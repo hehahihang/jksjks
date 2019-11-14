@@ -12,7 +12,7 @@ public class Q11 {
 		
 		while(true)
 		{
-			cnt ++;
+			cnt ++; //자릿수에 대한 count
 			k = k/10;
 			if(k==0)
 				break;
