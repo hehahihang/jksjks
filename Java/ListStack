@@ -1,0 +1,109 @@
+/* [ListStack]
+1. 스택을 리스트를 이용해 구현해보았다.
+2. Node,ListStack,Main 3개의 클래스를 사용했다.
+3. 제네릭을 사용해 객체의 타입을 설정했다. */
+
+// Node.java - 리스트의 Node를 위한 class
+
+public class Node<E>{
+    private Node<E> next; //다음 노드를 가리키는 노드next
+    private item; //노드의 data
+    
+    public void Node(E newItem,Node<E> node)
+    {
+        item = newItem;
+        next = node;
+    }
+    public E getItem(){
+        return item;
+    }
+    public Node<E> getNext(){
+        return next;
+    }
+    public void setItem(E newItem){
+        item = newItem;
+    }
+    public void setNext(Node<E> newNode){
+        next = newNode;
+    }
+}
+
+// ListStack.java - 리스트스택 구현 class
+
+public class ListStack<E>{
+    private Node<E> top;
+    private int size;
+    
+    public ListStack<E>() //ListStack의 생성자
+    {
+        top = null; //처음 리스트는 비어있으므로 top=null
+        size = 0;
+    }
+    public int size(){
+        return size;
+    }
+    public boolean isEmpty(){
+       return (size==0);
+    }
+    public void push(E newItem){ //스택에 새로운 item을 추가한다.
+        Node<E> newNode = new Node<E>(newItem,top); 
+        // 새로운 newNode객체를 생성한다. Node<E>생성자에 따라서 item = newItem , node = top --> 새로운 노드는 top을 가리키고 newitem이라는 item을  가지고 있다.
+        top = newNode; // 이러한 newNode객체를 top으로 설정한다.
+        size++;
+    }
+    public E peek(){ // 스택의 맨위 item을 return한다.
+        if(isEmpty())
+            throw new EmptyStackException();
+        else
+        {
+            E item = top.getItem();
+            return item;
+        }
+    }
+    public E pop(){ // 스택의 맨위 item을 삭제하며 return한다.
+        if(isEmpty())
+            throw new EmptyStackException();
+        else
+        {
+            E item = top.getItem(); // 현재 top에 위치하는 데이터를 변수 item에 저장한다.
+            top = top.getNext(); //top의 다음 Node가 top이 된다.
+            size--; // 사이즈를 -1
+            return item; 
+        }
+    }
+    public void print() // 스택의 현재 상태를 보여주는 메소드
+    {
+        Node<E> p = top;
+        System.out.println("스택 가장 위(top)----->스택 가장 아래");
+        for(int i=0;i<size;i++)
+        {
+            System.out.print(p.getItem()+"\t");
+            p = p.getNext();
+        }
+    }
+}
+
+// Main.java - 메인메소드
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		System.out.println("리스트 스택 만들어보기");
+		ListStack<String> ls = new ListStack<>();
+		ls.push("A");
+		ls.push("B");
+		ls.push("C");
+		
+		System.out.println("top\t "+ ls.peek());
+		
+		ls.push("D");
+		ls.print();
+		ls.pop();
+		
+		System.out.println("top\t "+ls.peek());
+		ls.push("F");
+		ls.print();	
+	}
+}
