@@ -1,0 +1,32 @@
+<1000이하의 소수를 모두 출력하기>
+
+[해결 방법]
+1. 2~1000의 숫자n을 반복한다.
+2. 이 숫자n을 2~n까지의 i 로 나누며 반복한다.
+3. 반복 중 나누어 떨어지는값이 있으면 break
+4. 끝까지 나누어 떨어지지 않으면 i와 같은 n을 출력한다. 이 n은 소수!
+
+public class PrimeNumber1 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		int cnt = 0;
+		
+		for(int n=2;n<=1000;n++)
+		{
+			int i;
+			for(i=2;i<n;i++)
+			{
+				cnt++;
+				if(n%2==0)
+					break;
+			}
+			if(n==i)
+				System.out.println(n);
+		}
+		System.out.println("나눗셈을 한 횟수 "+cnt );
+
+	}
+
+}

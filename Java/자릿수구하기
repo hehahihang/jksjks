@@ -1,0 +1,22 @@
+import java.util.Scanner;
+
+public class Q11 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int k = n;
+		int cnt=0;
+		
+		while(true)
+		{
+			cnt ++; //자릿수에 대한 count
+			k = k/10;
+			if(k==0)
+				break;
+		}
+		System.out.println("자릿수는 "+cnt+" 입니다");
+	}
+}
